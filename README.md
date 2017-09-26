@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 # csye6225-fall2017
 =======
 # Make Unauthenticated HTTP Request
-
+Amit Patil
 Ali Asgar
 
 Execute following command on your bash shell
