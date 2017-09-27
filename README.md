@@ -3,6 +3,8 @@
 # Make Unauthenticated HTTP Request
 Amit Patil
 Ali Asgar
+Ajay Vishwanathan
+Pawan Patidar
 
 Execute following command on your bash shell
 ``` bash
