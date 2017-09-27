@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -18,6 +16,7 @@ public class HomeController {
 
   private final static Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+  private UserRepository userRepository;
   @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
   @ResponseBody
   public String welcome() {
@@ -41,13 +40,17 @@ public class HomeController {
     jsonObject.addProperty("message", "authorized for /test");
     return jsonObject.toString();
   }
+  @GetMapping(path="/register") // Map ONLY GET Requests
+  public @ResponseBody String addNewUser (@RequestParam String name
+          , @RequestParam String email, @RequestParam String password) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
 
-  @RequestMapping(value = "/testPost", method = RequestMethod.POST, produces = "application/json")
-  @ResponseBody
-  public String testPost() {
-    JsonObject jsonObject = new JsonObject();
-    jsonObject.addProperty("message", "authorized for /testPost");
-    return jsonObject.toString();
+    user n = new user();
+    n.setEmail(email);
+    n.setPassword(password);
+    userRepository.save(n);
+    return "Saved";
   }
 
 }
