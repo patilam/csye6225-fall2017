@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/*
 @Component
 public class BasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
 
@@ -31,4 +31,7 @@ public class BasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
     super.afterPropertiesSet();
   }
 
+
+
 }
+*/

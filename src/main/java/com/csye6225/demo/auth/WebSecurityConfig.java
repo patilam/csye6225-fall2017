@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
-
+/*
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
-        .antMatchers("/").permitAll()
+        .antMatchers().permitAll()
         .anyRequest().authenticated()
         .and()
         .httpBasic()
@@ -39,3 +39,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return manager;
   }
 }
+*/
