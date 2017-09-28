@@ -14,6 +14,8 @@ public class user {
 
     private String password;
 
+    private String name;
+
     private String email;
 
     public String getPassword()
@@ -46,5 +48,11 @@ public class user {
         this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }
