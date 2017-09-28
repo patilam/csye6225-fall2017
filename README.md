@@ -1,6 +1,6 @@
 # CSYE 6225 Cloud Computing and Network Structures Repository Fall 2017
 
-A Repository for the Fall 2017 Course of CSYE 6225 Cloud computing and Network Structures. This repository will be used to develop a workflow using various Integration and Deployment tools such as Travis CI.
+Repository for the Fall 2017 Course of CSYE 6225 Cloud computing and Network Structures. This repository will be used to develop a workflow using various Integration and Deployment tools such as Travis CI.
 This will also be used to ensure students develop a workflow for development around github. This would allow for better collaboration in the future.
 
 Team Members
