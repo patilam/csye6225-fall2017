@@ -7,9 +7,9 @@ Team Members
 
 Ajay Vishwanathan  vishwanathan.a@husky.neu.edu
 
-Amit Patil         patil.a@husky.neu.edu
+Amit Patil         patil.am@husky.neu.edu
 
-Ali Amar Asgar     asgar.a@husky.neu.edu
+Ali Amar Asgar     amar.a@husky.neu.edu
 
 Pawan Patidar      patidar.p@husky.neu.edu
 
