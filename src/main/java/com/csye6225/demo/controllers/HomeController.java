@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,41 +29,7 @@ public class HomeController {
   public String welcome(HttpServletRequest req) {
 
     JsonObject jsonObject = new JsonObject();
-
-   // List<user> users = userRepository.findAll();
-
-    String username = req.getParameter("email");
-    String password = req.getParameter("password");
-
-   Iterable <user> users = userRepository.findAll();
-   int count =0;
-
-    for(user u:users){
-
-      if(u.getEmail().equals(username) && u.getPassword().equalsIgnoreCase(password)){
-
-        jsonObject.addProperty("message", "you are logged in. current time is " + new Date().toString());
-      }
-
-      else{
-        jsonObject.addProperty("message", "you are not logged in!!!");
-      }
-count++;
-    }
-
-    if(count==0){
-      jsonObject.addProperty("message", "you are not logged in!!!");
-    }
-
-
-/*
-    if (SecurityContextHolder.getContext().getAuthentication() != null
-        && SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
-      jsonObject.addProperty("message", "you are not logged in!!!");
-    } else {
-      jsonObject.addProperty("message", "you are logged in. current time is " + new Date().toString());
-    }*/
-
+    jsonObject.addProperty("message", "Welcome to Home Page! Current time is " + new Date().toString());
     return jsonObject.toString();
   }
 
@@ -73,18 +40,46 @@ count++;
     jsonObject.addProperty("message", "authorized for /test");
     return jsonObject.toString();
   }
-  @RequestMapping(path="/register", method = RequestMethod.POST) // Map ONLY GET Requests
-  public @ResponseBody String addNewUser (@RequestParam String name
-          , @RequestParam String email, @RequestParam String password) {
+
+  @RequestMapping(path="/register", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = "application/json") // Map ONLY GET Requests
+  public @ResponseBody String addNewUser (@RequestBody user ua) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
 
-    user n = new user();
-    n.setName(name);
-    n.setEmail(email);
-    n.setPassword(password);
-    userRepository.save(n);
-    return "Saved";
+    List<user> ulist=(ArrayList<user>)userRepository.findAll();
+    for(user u:ulist)
+    {
+      if(ua.getEmail().equals(u.getEmail()))
+      {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("message", "User email already exists");
+        return jsonObject.toString();
+      }
+    }
+    userRepository.save(ua);
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.addProperty("message", "User registered successfully");
+    return jsonObject.toString();
+  }
+
+  @RequestMapping(path="/login", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = "application/json") // Map ONLY GET Requests
+  public @ResponseBody String userLogin (@RequestBody user ual) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+
+    List<user> ulist=(ArrayList<user>)userRepository.findAll();
+    for(user ul:ulist)
+    {
+      if(ual.getEmail().equals(ul.getEmail()) && ual.getPassword().equals(ul.getPassword()))
+      {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("message", "User Logged in successfully.Current time is " + new Date().toString());
+        return jsonObject.toString();
+      }
+    }
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.addProperty("message", "Login failed. Invalid credentials");
+    return jsonObject.toString();
   }
 
 }
