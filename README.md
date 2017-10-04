@@ -23,7 +23,7 @@ The application is built on the spring framework using the Spring Boot project i
 
 # Globally
 1. Amazon Route 53 has been configureed for public hosting zone with all necessary security parameters.
-2. The Domain name provided by Namecheap.me is to have custom NameServers configured as provided by the publicly hosted zones in Amazon route53.
+2. The Domain name provided by Namecheap.me is to have custom NameServers configured as provided by the publicly hosted zones in Amazon route 53.
 
 # JMeter Test
 Jmeter tests have been written in order to check the accessiblility of REST endpoints and ensure that the security of the systtem is not being compromised. Over 100 auto generated usernames and passwords have been written to test the capabilities of the code.
